@@ -28,8 +28,7 @@ id="messageSource">
 
 <!-- <bean id="multipartResolver"   
 class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> -->
+<bean id="taskrepo" class="spring.repository.TaskRepository"></bean>
+<bean id="userrepo" class="spring.repository.UserRepository"></bean>
 
-<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> -->
-<!-- <bean id="repo" class="spring.repository.UserRepository"></bean>
-<bean id="crepo" class="spring.repository.CourseRepository"></bean> -->
 </beans>

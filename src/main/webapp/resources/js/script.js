@@ -82,3 +82,14 @@ btnTask.addEventListener("click", ()=>{
         assign.classList.add("d-none");
         planned.classList.add("d-none");
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const starCheckbox = document.getElementById('star');
+    starCheckbox.addEventListener('change', () => {
+        if (starCheckbox.checked) {
+            console.log('Star checkbox is checked');
+        } else {
+            console.log('Star checkbox is unchecked');
+        }
+    });
+});

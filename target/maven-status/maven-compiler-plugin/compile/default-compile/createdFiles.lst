@@ -1,0 +1,8 @@
+spring\model\Tasks.class
+spring\model\Catagory.class
+spring\repository\ConnectionClass.class
+spring\repository\TaskRepository.class
+spring\repository\UserRepository.class
+spring\model\User.class
+spring\controller\UserController.class
+spring\controller\TaskController.class

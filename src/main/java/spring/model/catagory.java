@@ -1,15 +1,28 @@
 package spring.model;
 import java.time.Instant;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-public class catagory {
+public class Catagory {
+	
 	private int catagoryID;
-	private int catName;
+	private String catName;
 	private int catDescription;
-	private Instant createdAt;
-	private Instant modifiedAt;
+
+	public int getCatagoryID() {
+		return catagoryID;
+	}
+	public void setCatagoryID(int catagoryID) {
+		this.catagoryID = catagoryID;
+	}
+	public String getCatName() {
+		return catName;
+	}
+	public void setCatName(String string) {
+		this.catName = string;
+	}
+	public int getCatDescription() {
+		return catDescription;
+	}
+
+
 	
 }

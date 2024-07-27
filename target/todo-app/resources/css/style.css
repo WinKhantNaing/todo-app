@@ -1,0 +1,52 @@
+body{
+    background-color: aliceblue;
+}
+
+*{
+    font-family: "Rubik", sans-serif;
+}
+
+h1{
+    font-family: "Playwrite NO", cursive;
+
+}
+
+h2,h3,h4,h5,h6{
+    font-family: "Kanit", sans-serif;
+    font-weight: 1000;
+}
+
+.lorem{
+    text-align: justify;    
+}
+
+input[type=checkbox] {
+    zoom: 1.5;
+}
+
+.none{
+    opacity: 0;
+}
+
+.one{
+    transition: all ease-in-out .8s ;
+    opacity: 1;
+}
+
+
+.sample, .myday, .planned, .task, .assign{
+    transition: all ease-in-out .8s ;
+}
+.icon-button {
+            border: none;
+            background: none;
+            padding: 20px; /* Add padding to increase size */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%; /* Make it a circle */
+        }
+
+        .icon-button i {
+            font-size: 3.5rem; /* Increase font size if needed */
+        }
