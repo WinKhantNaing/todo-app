@@ -83,7 +83,7 @@
 		<h1 class="my-5 text-center">Welcome from Our To Do List System!</h1>
 		<div class="container my-3 d-flex">
 			<!-- side panel -->
-			<div class="col-3 border-end">
+			<div class="col-3 border-end" style="width:15%;">
 				<div class="row mb-2">
 					<a href="#" class="text-decoration-none btnMyDay"> <i
 						class="bi bi-brightness-high"></i> <!-- <small>My Day</small> -->
@@ -91,9 +91,8 @@
 					</a>
 				</div>
 				<div class="row mb-2">
-					<a href="#" class="text-decoration-none btnImportant"> <i
-						class="bi bi-star"></i> <!-- <small>Important</small> -->
-						Important
+					<a href="#" class="text-decoration-none btnImportant" data-userid="${userID}" id="important-link">
+   							 <i class="bi bi-star"></i> Important
 					</a>
 				</div>
 				<div class="row mb-2">
@@ -147,32 +146,33 @@
 					<div class="d-flex justify-content-evenly">
 						<div class="">
 							<h2 class="">My Day</h2>
-							<p class="">Tuesday, June 18</p>
+							<p class="">${currentDate}</p>
 						</div>
 						<div class="">
-							<button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							<button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-context="myday">
 								<i class="bi bi-patch-plus-fill"></i>
 							</button>
 
 						</div>
 					</div>
 					
-					<div> 
-					<table class="table table-dark table-hover"  id="table" style="width:100%">
+					<audio id="taskSound" src="resources/audio/level-up-2-199574.mp3" preload="auto"></audio>
+					
+						<table class="table table-dark table-hover"  id="uncompleteTable" style="width:100%">
   						<thead class="table-dark">
     						<tr>
+    							<th></th>
 								<th>Task Title</th>
-								<th>Task Description</th>
 								<th>Due Date</th>
 								<th>Importance</th>
 								<th>Open Details</th>
 							</tr>
   						</thead>
  						 <tbody>
-    							<c:forEach items="${taskLst}" var="task" >
+    							<c:forEach items="${uncompleteTasks}" var="task" >
 									<tr>
+										<td><input type="checkbox" class="task-checkbox" data-task-id="${task.taskID}"></td>
 										<td>${task.taskTitle}</td>
-										<td>${task.taskDescription}</td>
 										<td>${task.dueDate}</td>
 										<td>
 											<input type="checkbox" class="star-input" id="star" disabled="true" <c:if test="${task.isImportant}">checked</c:if>>
@@ -188,83 +188,70 @@
 								</c:forEach>
   						</tbody>
 					</table>
+					<div> 
+					
 					
 					</div>
 					<div class=""></div>
+					<div class="">
+						<a href="#collapse" data-bs-toggle="collapse"
+							aria-expanded="true" class="collapsing text-decoration-none">
+							<h5 class="text-center align-items-center">
+								<span class="dropdown-toggle me-2"></span> Completed
+								<span id="completedCount"></span>
+							</h5>
+						</a>
+						
+						
+						<div class="col-7 my-4" id="collapse" style="width:100%; background-color: rgb(201, 228, 254);">
+						<table class="table table-dark table-hover"  id="completeTable" style="width:100%">
+  						<thead class="table-dark">
+    						<tr>
+    							<th></th>
+								<th>Task Title</th>
+								<th>Due Date</th>
+								<th>Importance</th>
+								<th>Open Details</th>
+							</tr>
+  						</thead>
+ 						 <tbody>
+    							<c:forEach items="${completeTasks}" var="task" >
+									<tr>
+										<td><input type="checkbox" class="task-checkbox" data-task-id="${task.taskID}" checked ></td>
+										<td>${task.taskTitle}</td>
+										<td>${task.dueDate}</td>
+										<td>
+											<input type="checkbox" class="star-input" id="star" disabled="true" <c:if test="${task.isImportant}">checked</c:if>>
+											<label for="star" class="star-label">&#9733;</label>
+										</td>
+										<td>
+											  <!-- Button trigger modal -->
+											<button style="background:#282c2d; outline:none;border:none;" type="button" class="view-details" data-id="${task.taskID}">
+											  <i class="fa-solid fa-exclamation"></i>
+											</button>
+										</td>
+									</tr>
+								</c:forEach>
+  						</tbody>
+					</table>
+						
+						</div>						
+					</div>
 				</div>
-
-
-
+				
 
 				<!-- important -->
 				<div class="important d-none ms-5 col fetch">
-					<div
-						class="header d-flex justify-content-evenly align-items-center">
+					<div class="header d-flex justify-content-evenly align-items-center">
 						<h2 class="">Important</h2>
 						<div class="">
-							<i class="bi bi-patch-plus-fill" style="font-size: 3rem;"></i>
+							<button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-context="important">
+								<i class="bi bi-patch-plus-fill"></i>
+							</button>
 						</div>
 					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
+					
+     				  <div id="important-content" class="d-none" ></div>
 				</div>
 
 				<!-- planned -->
@@ -401,10 +388,11 @@
 								<span class="dropdown-toggle me-2"></span> Completed
 							</h5>
 						</a>
+						
+						
 						<div class="rounded container col-7 my-4" id="collapse"
 							style="background-color: rgb(201, 228, 254);">
-							<div
-								class="d-flex p-2 align-items-center justify-content-between">
+							<div class="d-flex p-2 align-items-center justify-content-between">
 								<div class="d-flex">
 									<input type="checkbox" name="checkbox" class="" id="checkbox">
 									<div class=" ms-3">
@@ -417,38 +405,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="rounded container col-7 my-4" id="collapse"
-							style="background-color: rgb(201, 228, 254);">
-							<div
-								class="d-flex p-2 align-items-center justify-content-between">
-								<div class="d-flex">
-									<input type="checkbox" name="checkbox" class="" id="checkbox">
-									<div class=" ms-3">
-										<span class="d-block">New Task</span> <small
-											class="text-secondary">Please Insert a Task</small>
-									</div>
-								</div>
-								<div class="">
-									<i class="bi bi-star-fill h4"></i>
-								</div>
-							</div>
-						</div>
-						<div class="rounded container col-7 my-4" id="collapse"
-							style="background-color: rgb(201, 228, 254);">
-							<div
-								class="d-flex p-2 align-items-center justify-content-between">
-								<div class="d-flex">
-									<input type="checkbox" name="checkbox" class="" id="checkbox">
-									<div class=" ms-3">
-										<span class="d-block">New Task</span> <small
-											class="text-secondary">Please Insert a Task</small>
-									</div>
-								</div>
-								<div class="">
-									<i class="bi bi-star-fill h4"></i>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 
 				</div>
@@ -458,7 +415,6 @@
 	</section>
 
 	<!-- Vertically centered scrollable modal -->
-	
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -479,16 +435,16 @@
 									placeholder="Task Description" class="form-control"
 									id="exampleFormControlTextarea1" rows="3"></form:textarea>
 							</div>
-							<form:select path="catagoryID" class="form-select" aria-label="Default select example">
-								<option selected>Open this select menu</option>
+							<form:select path="categoryID" class="form-select" aria-label="Default select example">
+								
 								<c:forEach items="${catLst}" var="cat">
-									<option value="${cat.catagoryID}">${cat.catName}</option>
+									<option value="${cat.categoryID}">${cat.catName}</option>
 								</c:forEach>
 							</form:select>
 							
-        					 <input style="background:#4b5154; outline:none;border:none;" type="date" id="datepicker" name="dueDate" pattern="\d{4}-\d{2}-\d{2}"/>
+        					 <input style="background:#4b5154; outline:none;border:none;" type="date" id="datepicker" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" min="${minDate}"/>
         					 <form:label path="isImportant">Important</form:label>
-        					 <form:checkbox path="isImportant" value="true"/>
+        					 <form:checkbox id="importantCheckbox" path="isImportant" value="true"/>
 						</form:form>
 
 					</div>
@@ -508,18 +464,46 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Task Detail</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-dialog modal-dialog-centered">
-      	<form:form modelAttribute="task" action="upgradeTask" method="post">
-      		<form:input path="taskTitle" ></form:input>
+      <div class="modal-dialog modal-dialog-centered" style="pointer-events: auto;">
+      	<form:form modelAttribute="task" action="task/upgradeTask" method="post" id="updateForm">
+      		<form:hidden path="taskID" id="taskID" />
+      		
+      		<form:input path="taskTitle" class="form-control" ></form:input>
+      		<form:textarea path="taskDescription" class="form-control" ></form:textarea>
+      		<form:select path="categoryID" id="catID" class="form-select" aria-label="Default select example">
+    <!-- Options will be populated dynamically -->
+			</form:select>
+			
+		   	 <form:input style="background:#4b5154; outline:none;border:none;" id="dued" path="dueDate" type="date" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" min="${minDate}"/>
+        	 <form:label path="isImportant">Important</form:label>
+       		 <form:checkbox path="isImportant" id="isImportant"/>
       	</form:form>
-      	
+ 
 	  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button  onclick="saveUpdate()" type="submit" class="btn btn-primary">Save changes</button>
+        <button onclick="showDeleteModal()" type="button" class="btn btn-danger ms-auto">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h5>This will be permanently deleted.</h5>
+        <h6>You won't be able to undo this action.</h6>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button onclick="deleteTask()" type="button" class="btn btn-primary">Understood</button>
+        </div>
       </div>
     </div>
   </div>
@@ -530,6 +514,37 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 	<script>
+	
+	var currentTaskId; // Global variable to store the current task ID
+	function showDeleteModal() {
+	    // Get the task ID from the hidden input field
+	    currentTaskId = $('#taskID').val();
+	    // Show the delete confirmation modal
+	    var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'), {
+	        keyboard: false
+	    });
+	    $('#detailModal').modal('hide');
+	    deleteModal.show();
+	}
+	
+	function deleteTask() {
+		console.log(currentTaskId);
+	    $.ajax({
+	        url: 'task/deleteTask/' + currentTaskId,
+	        method: "GET",
+	        success: function(response) {
+	        	  $('#deleteModal').modal('hide'); // Close the delete confirmation modal
+	            console.log('Task deleted successfully');
+	            window.location.href = response;
+	        },
+	        error: function(xhr, status, error) {
+	            // Handle error
+	            console.error('Error deleting task: ' + error);
+	        }
+	    });
+	}
+
+	
 	document.addEventListener('DOMContentLoaded', () => {
 	    const starCheckbox = document.getElementById('star');
 	    starCheckbox.addEventListener('change', () => {
@@ -544,8 +559,22 @@
 	    function submitForm() {
 		addTaskForm.submit();
     }
+	    function saveUpdate() {
+	    	updateForm.submit();
+	    }
 	    
 	    $(document).ready(function(){
+	    	updateCompletedCount();
+	    	
+	    	$('#completeTable tbody tr').each(function() {
+	            $(this).addClass('strikethrough');
+	        });
+
+	        // Remove strike-through from all tasks in the uncompleteTable
+	        $('#uncompleteTable tbody tr').each(function() {
+	            $(this).removeClass('strikethrough');
+	        });
+	    	
 	        $(".view-details").click(function(){
 	            var taskId = $(this).data("id");
 	            console.log(taskId);
@@ -559,14 +588,39 @@
 	                	console.log(data);  // Log the response data
 	                    
 	                    // Populate the modal form with task details
-	                    $("#taskTitle").val(data.taskTitle);
-	                    $("#taskDescription").val(data.taskDescription);
-	                    $("#catagoryID").val(data.catagoryID);
-	                    $("#status").val(data.status);
-	                    $("#isImportant").prop('checked', data.isImportant);
-	                    $("#dueDate").val(data.dueDate);
+	                     var task = data.task;
+	                $("#taskID").val(task.taskID);
+                	$("#taskTitle").val(task.taskTitle);
+               		$("#taskDescription").val(task.taskDescription);
+               		$("#status").val(task.status);
+               		$("#isImportant").prop('checked', task.isImportant);
+               		
+               		if (task.dueDate) {
+               		let dueDate = new Date(task.dueDate);
+                    // Format the date to 'YYYY-MM-DD' using toLocaleDateString
+                    let dueDateString = dueDate.toLocaleDateString('en-CA'); // 'en-CA' locale formats date as 'YYYY-MM-DD'
+                    // Set the value of the date input
+                    $("#dued").val(dueDateString);
+               		} else {
+               	
+               		    $("#dued").val('');
+               		}
+	               
+               		// Get the category ID from the response
+	                    var categoryID = task.categoryID;
 
-	                    $("#detailModal").modal('show');
+	                    // Populate the category dropdown
+	                    var categoryDropdown = $("#catID");
+	                    categoryDropdown.empty();  // Clear any existing options
+
+	                    $.each(data.catLst, function(index, category) {
+	                        var option = $('<option>', {
+	                            value: category.categoryID,
+	                            text: category.catName,
+	                            selected: category.categoryID == categoryID  // Select the option if IDs match
+	                        });
+	                        categoryDropdown.append(option);
+	                    });
 
 	                    $("#detailModal").modal('show');
 	                },
@@ -575,9 +629,81 @@
 	                }
 	            });
 	        });
-	    });
-	</script>
+	        
+            function updateCompletedCount() {
+                var rowCount = $('#completeTable tbody tr').length;
+                console.log('Number of completed tasks:', rowCount);
+                $('#completedCount').text(rowCount); // Update the count in the element with id "completedCount"
+            }
+            
+	        $(document).on('click', '.task-checkbox', function() {
 
+	            var $checkbox = $(this);
+	            var taskId = $checkbox.data('task-id');
+	            var isChecked = $checkbox.is(':checked');
+	            var status = isChecked ? 1 : 0;
+	            var taskRow = $checkbox.closest('tr');
+	            console.log(taskRow);
+	           
+	            $.ajax({
+	                url: 'task/updateStatus/' + taskId + '/' + status,
+	                type: 'POST',
+	                success: function(response) {
+	                	if (isChecked) {
+	                		var audio = document.getElementById('taskSound');
+	                		audio.play();
+	                	    var detachedRow = taskRow.detach();  // Detach the row from the current table
+	                	    $('#completeTable tbody').append(detachedRow);  // Append to the new table
+	                	    taskRow.addClass('strikethrough'); 
+	                	} else {
+	                	    var detachedRow = taskRow.detach();
+	                	    $('#uncompleteTable tbody').append(detachedRow);
+	                	    taskRow.removeClass('strikethrough');
+	                	}
+	    	            updateCompletedCount();
+	                },
+	                error: function(xhr, status, error) {
+	                    console.error('Failed to update task status:', error);
+	                    // Optionally, revert the checkbox state if the update fails
+	                    $(this).prop('checked', !isChecked);
+	                }
+	            });
+	        });
+
+	    });
+	    
+	    $(document).ready(function() {
+	        // Event listener for when the modal is about to be shown
+	        $('#staticBackdrop').on('show.bs.modal', function(event) {
+	          var button = $(event.relatedTarget); // Button that triggered the modal
+	          var context = button.data('context'); // Extract info from data-* attributes
+
+	          // If the context is "important", check the checkbox; otherwise, uncheck it
+	          if (context === 'important') {
+	            $('#importantCheckbox').prop('checked', true);
+	          } else {
+	            $('#importantCheckbox').prop('checked', false);
+	          }
+	        });
+	      });
+	    
+	    $(document).ready(function() {
+	        $('#important-link').on('click', function(event) {
+	            event.preventDefault(); // prevent default link behavior
+	            var userId = $(this).data('userid');
+	            $.ajax({
+	                type: 'GET',
+	                url: 'task/showImpTasks/' + userId,
+	                success: function(data) {
+	                	$('#important-content').removeClass("d-none");
+	                    $('#important-content').html(data); // update the #important-content div
+	                }
+	            });
+	        });
+	    });
+	    
+	 
+    </script>
 		
 </body>
 </html>

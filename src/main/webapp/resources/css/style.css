@@ -16,6 +16,54 @@ h2,h3,h4,h5,h6{
     font-weight: 1000;
 }
 
+.strikethrough {
+    text-decoration: line-through;
+}
+
+#deleteModal .modal-body {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    #deleteModal .modal-content {
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #deleteModal h5 {
+        font-weight: bold;
+        color: #dc3545;
+        margin-bottom: 1rem;
+    }
+
+    #deleteModal h6 {
+        color: #6c757d;
+        margin-bottom: 2rem;
+    }
+
+    #deleteModal .modal-footer {
+        justify-content: center;
+        padding: 0;
+    }
+
+    #deleteModal .btn {
+        margin: 0 10px;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+        border-radius: 50px;
+    }
+
+    #deleteModal .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+    #deleteModal .btn-primary {
+        background-color: #dc3545;
+        border: none;
+    }
+
 table {
 	width:100%;
 }
@@ -36,7 +84,6 @@ input[type=checkbox] {
     transition: all ease-in-out .8s ;
     opacity: 1;
 }
-
 
 .sample, .myday, .planned, .task, .assign{
     transition: all ease-in-out .8s ;

@@ -9,7 +9,7 @@ public class Tasks implements Serializable{
 	
 	private int taskID;
 	private String taskTitle;
-	private int catagoryID;
+	private int categoryID;
 	private String taskDescription;
 	private int status;
 	private boolean isImportant;
@@ -34,11 +34,11 @@ public class Tasks implements Serializable{
 	public void setTaskTitle(String taskTitle) {
 		this.taskTitle = taskTitle;
 	}
-	public int getCatagoryID() {
-		return catagoryID;
+	public int getCategoryID() {
+		return categoryID;
 	}
-	public void setCatagoryID(int catagoryID) {
-		this.catagoryID = catagoryID;
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
 	}
 	public String getTaskDescription() {
 		return taskDescription;

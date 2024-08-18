@@ -1,5 +1,7 @@
 package spring.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import spring.model.Catagory;
+import spring.model.Category;
 import spring.model.Tasks;
 import spring.model.User;
 import spring.repository.TaskRepository;
@@ -70,11 +72,20 @@ public class UserController {
 	
 	@GetMapping(value="/showIndex")
 	public String index(Model m, HttpSession session){
-		List<Catagory> catLst = taskrepo.getAllCatagories();
+		List<Category> catLst = taskrepo.getAllCatagories();
 		m.addAttribute("catLst",catLst);
 		m.addAttribute("task",new Tasks());
-		List<Tasks> taskLst = taskrepo.getAllTasks((Integer)session.getAttribute("userID"));
-		m.addAttribute("taskLst",taskLst);
+		List<Tasks> uncompleteTasks = taskrepo.getUncompleteTasks((Integer)session.getAttribute("userID"));
+		List<Tasks> completeTasks = taskrepo.getCompleteTasks((Integer)session.getAttribute("userID"));
+		m.addAttribute("uncompleteTasks",uncompleteTasks);
+		m.addAttribute("completeTasks",completeTasks);
+		LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d");
+        String formattedDate = currentDate.format(formatter);
+        DateTimeFormatter minDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String minDate = currentDate.format(minDateFormatter);
+        m.addAttribute("currentDate", formattedDate);
+        m.addAttribute("minDate", minDate);
 		return "index";
 	}
 	

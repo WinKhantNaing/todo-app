@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form  modelAttribute="user" action="login" method="post" >
 	<div>${msg}</div>
+	<form:form  modelAttribute="user" action="login" method="post" >
           <form:input placeholder="User Email" path="userEmail" />
           <form:password placeholder="Password" path="userPassword" />
           <button type="submit">login</button>

@@ -1,8 +1,10 @@
 spring\model\Tasks.class
-spring\model\Catagory.class
+spring\model\Category.class
+spring\model\TaskResponse.class
 spring\repository\ConnectionClass.class
 spring\repository\TaskRepository.class
 spring\repository\UserRepository.class
 spring\model\User.class
 spring\controller\UserController.class
+spring\configuration\JacksonConfig.class
 spring\controller\TaskController.class

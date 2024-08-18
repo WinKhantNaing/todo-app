@@ -1,8 +1,10 @@
 D:\MyWorkspace\todo-app\src\main\java\spring\model\User.java
 D:\MyWorkspace\todo-app\src\main\java\spring\repository\TaskRepository.java
 D:\MyWorkspace\todo-app\src\main\java\spring\controller\UserController.java
-D:\MyWorkspace\todo-app\src\main\java\spring\model\Catagory.java
 D:\MyWorkspace\todo-app\src\main\java\spring\repository\ConnectionClass.java
 D:\MyWorkspace\todo-app\src\main\java\spring\controller\TaskController.java
 D:\MyWorkspace\todo-app\src\main\java\spring\model\Tasks.java
 D:\MyWorkspace\todo-app\src\main\java\spring\repository\UserRepository.java
+D:\MyWorkspace\todo-app\src\main\java\spring\model\Category.java
+D:\MyWorkspace\todo-app\src\main\java\spring\configuration\JacksonConfig.java
+D:\MyWorkspace\todo-app\src\main\java\spring\model\TaskResponse.java

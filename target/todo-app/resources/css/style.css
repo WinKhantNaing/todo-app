@@ -16,6 +16,10 @@ h2,h3,h4,h5,h6{
     font-weight: 1000;
 }
 
+table {
+	width:100%;
+}
+
 .lorem{
     text-align: justify;    
 }
@@ -33,14 +37,13 @@ input[type=checkbox] {
     opacity: 1;
 }
 
-
 .sample, .myday, .planned, .task, .assign{
     transition: all ease-in-out .8s ;
 }
 .icon-button {
             border: none;
             background: none;
-            padding: 20px; /* Add padding to increase size */
+            padding: 15px; /* Add padding to increase size */
             display: inline-flex;
             align-items: center;
             justify-content: center;
