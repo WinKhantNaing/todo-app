@@ -85,19 +85,20 @@
 			<!-- side panel -->
 			<div class="col-3 border-end" style="width:15%;">
 				<div class="row mb-2">
-					<a href="#" class="text-decoration-none btnMyDay"> <i
-						class="bi bi-brightness-high"></i> <!-- <small>My Day</small> -->
-						My Day
+					<a href="#" class="text-decoration-none btnMyDay">
+					 <i class="bi bi-check-square"></i>
+						Tasks
 					</a>
 				</div>
+				
 				<div class="row mb-2">
 					<a href="#" class="text-decoration-none btnImportant" data-userid="${userID}" id="important-link">
    							 <i class="bi bi-star"></i> Important
 					</a>
 				</div>
 				<div class="row mb-2">
-					<a href="#" class="text-decoration-none btnPlanned"> <i
-						class="bi bi-card-list"></i> <!-- <small>Planned</small> -->
+					<a href="#" class="text-decoration-none btnPlanned" data-userid="${userID}" id="planned-tag"> 
+					<i class="bi bi-card-list"></i> <!-- <small>Planned</small> -->
 						Planned
 					</a>
 				</div>
@@ -107,12 +108,7 @@
 						Assigned to me
 					</a>
 				</div>
-				<div class="row mb-2">
-					<a href="#" class="text-decoration-none btnTask"> <i
-						class="bi bi-check-square"></i> <!-- <small>Tasks</small> -->
-						Tasks
-					</a>
-				</div>
+				
 			</div>
 			
 			<!-- Tasks -->
@@ -259,70 +255,13 @@
 					<div
 						class="header d-flex justify-content-evenly align-items-center">
 						<h2 class="">What are You Planning?</h2>
-						<div class="">
-							<i class="bi bi-patch-plus-fill" style="font-size: 3rem;"></i>
-						</div>
+						<button type="button" class="btn icon-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-context="plan">
+								<i class="bi bi-patch-plus-fill"></i>
+						</button>
 					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
+					<div id="planned-content" class="d-none" style="background-color: rgb(201, 228, 254);">
+						
+					</div> 
 				</div>
 
 				<!-- task assigned to me -->
@@ -342,73 +281,6 @@
 					</div>
 				</div>
 
-				<!-- task -->
-				<div class="task d-none ms-5 col fetch">
-					<div
-						class="header d-flex justify-content-evenly align-items-center">
-						<h2 class="">Tasks</h2>
-						<div class="">
-							<i class="bi bi-patch-plus-fill" style="font-size: 3rem;"></i>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="rounded container col-7 my-4"
-						style="background-color: rgb(201, 228, 254);">
-						<div class="d-flex p-2 align-items-center justify-content-between">
-							<div class="d-flex">
-								<input type="checkbox" name="checkbox" class="" id="checkbox">
-								<div class=" ms-3">
-									<span class="d-block">New Task</span> <small
-										class="text-secondary">Please Insert a Task</small>
-								</div>
-							</div>
-							<div class="">
-								<i class="bi bi-star-fill h4"></i>
-							</div>
-						</div>
-					</div>
-					<div class="">
-						<a href="#collapse" data-bs-toggle="collapse"
-							aria-expanded="false" class="collapsing text-decoration-none">
-							<h5 class="text-center align-items-center">
-								<span class="dropdown-toggle me-2"></span> Completed
-							</h5>
-						</a>
-						
-						
-						<div class="rounded container col-7 my-4" id="collapse"
-							style="background-color: rgb(201, 228, 254);">
-							<div class="d-flex p-2 align-items-center justify-content-between">
-								<div class="d-flex">
-									<input type="checkbox" name="checkbox" class="" id="checkbox">
-									<div class=" ms-3">
-										<span class="d-block">New Task</span> <small
-											class="text-secondary">Please Insert a Task</small>
-									</div>
-								</div>
-								<div class="">
-									<i class="bi bi-star-fill h4"></i>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-
-				</div>
 			</div>
 
 		</div>
@@ -510,7 +382,7 @@
 </div>
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-		<script type="module" src="resources/js/script.js"></script>  
+		<script type="module" src="<c:url value="/resources/js/script.js"/>"></script>  
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 	<script>
@@ -681,8 +553,14 @@
 	          // If the context is "important", check the checkbox; otherwise, uncheck it
 	          if (context === 'important') {
 	            $('#importantCheckbox').prop('checked', true);
+	          } else if(context === 'plan') {
+	        	  if (context === 'plan') {
+	        		    var minDate = $('#datepicker').attr('min');
+	        		    $('#datepicker').val(minDate);
+	        		}
 	          } else {
 	            $('#importantCheckbox').prop('checked', false);
+	            $('#datepicker').val('');
 	          }
 	        });
 	      });
@@ -700,6 +578,21 @@
 	                }
 	            });
 	        });
+	        
+	        $('#planned-tag').on('click',function(event){
+	        	event.preventDefault();
+	        	var userId = $(this).data('userid');
+	        	$.ajax({
+	        		type: 'GET',
+	        		url: 'task/getPlannedTasks/' + userId,
+	        		success: function(data){
+	                	$('#planned-content').removeClass("d-none");
+	                    $('#planned-content').html(data);
+	        		}
+	        	})
+	        	
+	        })
+	        
 	    });
 	    
 	 

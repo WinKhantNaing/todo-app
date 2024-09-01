@@ -1,0 +1,372 @@
+@charset "ISO-8859-1";
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    background-color:#054747;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    z-index: 99;
+}
+
+.nav{
+    background-color: transparent;
+    padding: 20px 0;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.justify-content-between{
+    justify-content: space-between;
+}
+
+.navigation a{
+    position: relative;
+    font-weight: 500;
+    font-size: 1.2em;
+    font-family: 'poppins', sans-serif;
+    color: #343a40;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.bg-success{
+    background-color: green;
+}
+
+.navigation .b-1{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid yellow;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1.3em;
+    color: yellow;
+    margin-left: 40px;
+    transition: ease .3s;
+}
+
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    width: 100%;
+    height: 3px;
+    background-color: yellow;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after{
+    transform: scaleX(1);
+}
+
+.b-1:hover{
+    background-color: yellow;
+    color: #343a40;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.fs-1{
+    font-size: 1.1em;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.logo{
+    font-size: 1.5em;
+}
+
+.text-white{
+    color: #fff;
+}
+
+.contents{
+    width: 60%;
+}
+
+.flex-grow-1{
+    flex-grow: 1;
+}
+
+.flex-grow-2{
+    flex-grow: 2;
+}
+
+.bg-warning{
+    background-color: yellow;
+}
+
+.text-warning{
+    color: yellow;
+}
+
+.login{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    transition: all .4s ease;
+    overflow: hidden;
+    display: none;
+}
+
+.form{
+    width: 100%;
+    padding: 0 30px;
+}
+
+.header{
+    font-size: 2em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input-box{
+    position: relative;
+    margin: 20px 0;
+    border-bottom: 2px solid #343a40;
+    width: 100%;
+    height: 50px;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1.3em;
+    color: #343a40;
+    font-weight: 500px;
+    pointer-events : none;
+    transition: ease .3s;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input-box input{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 20px;
+    left:0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 1.2em;
+    padding: 0 35px 0 5px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input-box i{
+    position: absolute;
+    right: 8px;
+    bottom: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.rememberMe{
+    display: flex;
+    justify-content: space-between;
+    font-size: .9em;
+    font-weight: 500;
+    color: #343a40;
+    margin: -10px 0 15px;
+}
+
+.rememberMe label input{
+    margin: 5px;
+    accent-color:#343a40;
+}
+
+.rememberMe span a{
+    text-decoration: none;
+    color: #343a40;
+    font-weight: 600;
+}
+
+.rememberMe span a:hover{
+    text-decoration: underline;
+}
+
+.loginButton{
+    display: flex;
+    justify-content: center;
+}
+
+.loginButton button{
+    height: 40px;
+    width: 60%;
+    font-size: 1.3em;
+    outline: none;
+    border: none;
+    background-color: #343a40;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.loginButton button:hover{
+    background-color: #3c5654;
+    color:#FCC0BF;
+}
+
+.noAccount{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.noAccount p a{
+    text-decoration: none;
+    color: #343a40;
+    font-weight: 600;
+}
+
+.noAccount p a:hover{
+    text-decoration: underline;
+}
+
+.icon-closed{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 50px;
+    height: 50px;
+    background-color: #343a40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+}
+
+.icon-closed:hover{
+    background-color: #3c5654;
+}
+
+.icon-closed .icon:hover{
+    color:#FCC0BF;
+}
+
+.icon-closed .icon{
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.loginFirst{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all .5s ease;
+}
+
+
+.register{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(400px);
+    transition: all ease .5s;
+}
+
+.register .input-box{
+    margin: 15px 0;
+}
+
+.bg-dark{
+    background-color: #343a40;
+}
+
+.rememberMe label{
+    display: flex;
+    align-items: center;
+}
+
+.register .noAccount{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom:10px;
+    user-select: none;
+}
+
+.register .loginButton button{
+    margin-top: -10px;
+}
+
+.active {
+    height: 430px;
+}
+
+.move{
+    transform: translateX(0);
+}
+
+.moveOne{
+    transform: translateX(-450px);
+}
+
+.d-none{
+    display: none;
+}
+
+.d-block{
+    display: block;
+}
+
+.firstDiv{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 50px 0;
+}

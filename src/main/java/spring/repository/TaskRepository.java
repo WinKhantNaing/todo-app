@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class TaskRepository {
 		int important;
 		int result = 0;
 		try {
-			ps = con.prepareStatement("insert into tasks (task_title, task_description, status, is_important, due_date, reminder, usr_id, cat_id,created_at) values (?,?,?,?,?,?,?,?,?)");
+			ps = con.prepareStatement("insert into tasks (task_title, task_description, status, is_important, due_date, reminder, usr_id, cat_id) values (?,?,?,?,?,?,?,?)");
 			
 			ps.setString(1, task.getTaskTitle());
 			ps.setString(2, task.getTaskDescription());
@@ -50,7 +51,6 @@ public class TaskRepository {
 			 
 			ps.setInt(7, task.getUsrID());
 			ps.setInt(8, task.getCategoryID());
-	        ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
 			result = ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -320,5 +320,111 @@ public class TaskRepository {
 		}
 		return result;
 	}
+	
+	public List<Tasks> getTodayTasks(int usrID,LocalDate tdyDate){
+		List<Tasks> todayTask = getTasksByDate(usrID,tdyDate);
+		return todayTask;
+	}
+	
+	public List<Tasks> getTomorrowTasks(int usrID,LocalDate tmrDate){
+		List<Tasks> tomorrowTask = getTasksByDate(usrID,tmrDate);
+		return tomorrowTask;
+	}
+	
+	public List<Tasks> getTasksByDate(int usrID,LocalDate date){
+		Connection con = ConnectionClass.getConnection();
+		List<Tasks> taskLst = new ArrayList<>();
+		Tasks task = null;
+		boolean important;
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from tasks where due_date=? and status=0 and usr_id=?");
+			ps.setDate(1, Date.valueOf(date));
+			ps.setInt(2, usrID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				task = new Tasks();
+				task.setTaskID(rs.getInt("task_id"));
+				task.setTaskTitle(rs.getString("task_title"));
+				task.setTaskDescription(rs.getString("task_description"));
+				if(rs.getInt("is_important") == 1) {
+					important = true;
+				} else {
+					important = false;
+				}
+				task.setIsImportant(important);
+				task.setDueDate(rs.getDate("due_date").toLocalDate());
+				task.setCategoryID(rs.getInt("cat_id"));
+				taskLst.add(task);
+			}
+		} catch (SQLException e) {
+			System.out.println("get tasks by date: " + e.getMessage());
+		}
+		return taskLst;
+		
+	}
+	
+	public List<Tasks> getTasksNextFiveDays(int usrID,LocalDate startDate,LocalDate endDate){
+		Connection con = ConnectionClass.getConnection();
+		List<Tasks> taskLst = new ArrayList<>();
+		Tasks task = null;
+		boolean important;
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from tasks where due_date BETWEEN ? and ? and status=0 and usr_id=?");
+			ps.setDate(1, Date.valueOf(startDate));
+			ps.setDate(2, Date.valueOf(endDate));
+			ps.setInt(3, usrID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				task = new Tasks();
+				task.setTaskID(rs.getInt("task_id"));
+				task.setTaskTitle(rs.getString("task_title"));
+				task.setTaskDescription(rs.getString("task_description"));
+				if(rs.getInt("is_important") == 1) {
+					important = true;
+				} else {
+					important = false;
+				}
+				task.setIsImportant(important);
+				task.setDueDate(rs.getDate("due_date").toLocalDate());
+				task.setCategoryID(rs.getInt("cat_id"));
+				taskLst.add(task);
+			}
+		} catch (SQLException e) {
+			System.out.println("get next five days tasks: " + e.getMessage());
+		}
+		return taskLst;
+		
+	}
 
+	public List<Tasks> getEarlierTasks(int usrID,LocalDate currentDate){
+		Connection con = ConnectionClass.getConnection();
+		List<Tasks> taskLst = new ArrayList<>();
+		Tasks task = null;
+		boolean important;
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from tasks where due_date < ? and status=0 and usr_id=?");
+			ps.setDate(1, Date.valueOf(currentDate));
+			ps.setInt(2, usrID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				task = new Tasks();
+				task.setTaskID(rs.getInt("task_id"));
+				task.setTaskTitle(rs.getString("task_title"));
+				task.setTaskDescription(rs.getString("task_description"));
+				if(rs.getInt("is_important") == 1) {
+					important = true;
+				} else {
+					important = false;
+				}
+				task.setIsImportant(important);
+				task.setDueDate(rs.getDate("due_date").toLocalDate());
+				task.setCategoryID(rs.getInt("cat_id"));
+				taskLst.add(task);
+			}
+		} catch (SQLException e) {
+			System.out.println("get earlier tasks: " + e.getMessage());
+		}
+		return taskLst;
+		
+	}
 }

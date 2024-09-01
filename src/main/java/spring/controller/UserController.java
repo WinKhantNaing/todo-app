@@ -46,8 +46,10 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "/")
-	public ModelAndView home(){
-		return new ModelAndView("login","user", new User());
+	public String home(Model m){
+		m.addAttribute("user",new User());
+		m.addAttribute("createUser",new User());
+		return "login";
 	}
 	
 	@PostMapping(value = "/login")
@@ -87,12 +89,6 @@ public class UserController {
         m.addAttribute("currentDate", formattedDate);
         m.addAttribute("minDate", minDate);
 		return "index";
-	}
-	
-	@GetMapping(value = "/userRegister")
-	public String register(Model m) {
-		m.addAttribute("createUser", new User());
-		return "register";
 	}
 	
 	@PostMapping(value="/addUser")

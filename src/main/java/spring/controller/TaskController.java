@@ -92,7 +92,6 @@ public class TaskController {
 	@GetMapping(value = "/showImpTasks/{id}")
 	public String showImpTasks(@PathVariable int id, Model model) {
 	    List<Tasks> impTaskList = taskrepo.getImportantTasks(id);
-	    System.out.println("impList: " + impTaskList);
 	    model.addAttribute("impTaskList", impTaskList);
 	    return "important"; // return the important.jsp fragment
 	}
@@ -113,4 +112,25 @@ public class TaskController {
 		System.out.println("result of update status: " + result);
 		return "/todo-app/showIndex";
 	} 
+	
+	@GetMapping(value="/getPlannedTasks/{usrId}")
+	public String getPlannedTasks(@PathVariable int usrId,Model m) {
+		LocalDate currentDate = LocalDate.now();
+		List<Tasks> earlierTasks = taskrepo.getEarlierTasks(usrId, currentDate);
+		List<Tasks> todayTasks = taskrepo.getTodayTasks(usrId, currentDate);
+		LocalDate tmrDate = currentDate.plusDays(1);
+		List<Tasks> tomorrowTasks = taskrepo.getTomorrowTasks(usrId, tmrDate);
+		LocalDate startDate = tmrDate.plusDays(1);
+		LocalDate endDate = startDate.plusDays(4);
+		List<Tasks> fiveDayTasks = taskrepo.getTasksNextFiveDays(usrId, startDate, endDate);
+		m.addAttribute("earlierTasks",earlierTasks);
+		m.addAttribute("todayTasks",todayTasks);
+		m.addAttribute("tomorrowTasks",tomorrowTasks);
+		m.addAttribute("fiveDayTasks",fiveDayTasks);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM d");
+        m.addAttribute("formattedStartDate",startDate.format(formatter));
+        m.addAttribute("formattedEndDate",endDate.format(formatter));
+		return "planned";
+		
+	}
 }
