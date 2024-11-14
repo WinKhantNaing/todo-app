@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="resources/css/login.css">
 </head>
 <body>
-	<div>${msg}</div>
+	
     <section class="loginForm login d-block">
     <form:form class="loginFirst form d-flex flex-column flex-between" modelAttribute="user" action="login" method="post">
         <div class="firstDiv">
             <h3 class="header text-center">Login</h3>
+            <div style="text-align:center; color: red; margin-top:10px; margin-buttom: 10px;">${msg}</div>
             <div class="email input-box">
                 <i class="fas fa-envelope"></i>
                 <form:input id="email" path="userEmail" type="email" required="required" class="" autocomplete="new-email"/>
@@ -39,8 +40,9 @@
             </div>
         </div>
     </form:form>
-
+	
     <form:form method="post" action="addUser" modelAttribute="createUser" class="register form d-flex flex-column flex-between" >
+    
         <div class="firstDiv">
             <h3 class="header text-center">Registration</h3>
             <div class="name input-box">

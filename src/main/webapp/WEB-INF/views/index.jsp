@@ -67,7 +67,7 @@
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="#">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="logout">Log Out</a></li>
 					</ul>
 					<form class="d-flex " role="search">
 						<input class="form-control me-2 opacity-50" type="search"
@@ -314,9 +314,14 @@
 								</c:forEach>
 							</form:select>
 							
-        					 <input style="background:#4b5154; outline:none;border:none;" type="date" id="datepicker" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" min="${minDate}"/>
-        					 <form:label path="isImportant">Important</form:label>
+							<div style="margin-top: 20px;">
+							<input style="background:#4b5154; outline:none;border:none;" type="date" id="datepicker" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" min="${minDate}"/>
+							</div>
+        					 
+        					<div style="margin-top: 20px;">
+        					<form:label path="isImportant">Important</form:label>
         					 <form:checkbox id="importantCheckbox" path="isImportant" value="true"/>
+        					</div>
 						</form:form>
 
 					</div>
@@ -349,9 +354,14 @@
     <!-- Options will be populated dynamically -->
 			</form:select>
 			
+		   	 <div style="margin-top:20px;">
 		   	 <form:input style="background:#4b5154; outline:none;border:none;" id="dued" path="dueDate" type="date" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" min="${minDate}"/>
+		   	 </div>
+        	 
+        	 <div style="margin-top:20px;">
         	 <form:label path="isImportant">Important</form:label>
        		 <form:checkbox path="isImportant" id="isImportant"/>
+        	 </div>
       	</form:form>
  
 	  </div>

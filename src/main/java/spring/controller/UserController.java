@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mysql.cj.Session;
+
 import spring.model.Category;
 import spring.model.Tasks;
 import spring.model.User;
@@ -64,12 +66,18 @@ public class UserController {
 			if(user != null) {
 				session.setAttribute("userID", user.getUserID());
 				return "redirect:showIndex";
+			} else{
+				m.addAttribute("msg", "Wrong password!");
+				m.addAttribute("user",new User());
+				m.addAttribute("createUser",new User());
+				return "login";
 			}
 		} else {
 			m.addAttribute("msg","Please register first!!");
-			return "/";
+			m.addAttribute("user",new User());
+			m.addAttribute("createUser",new User());
+			return "login";
 		}
-		return "/";
 	}
 	
 	@GetMapping(value="/showIndex")
@@ -107,5 +115,12 @@ public class UserController {
 		}
 		return "redirect:/";
 	}
+	
+	@GetMapping(value = "/logout")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	
 }
